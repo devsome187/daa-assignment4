@@ -1,6 +1,12 @@
 public class Problem10 {
     public int rob(int[] nums) {
-        // your code here
-        return 0;
+        int prev2 = 0;
+        int prev1 = 0;
+        for (int x : nums) {
+            int cur = Math.max(prev1, prev2 + x);
+            prev2 = prev1;
+            prev1 = cur;
+        }
+        return prev1;
     }
 }

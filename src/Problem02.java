@@ -1,6 +1,20 @@
+import java.util.Arrays;
+
 public class Problem02 {
     public int jump(int[] nums) {
-        // your code here
-        return 0;
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for (int i = 0; i < n; i++) {
+            if (dp[i] == Integer.MAX_VALUE) {
+                continue;
+            }
+            int end = Math.min(n - 1, i + nums[i]);
+            for (int j = i + 1; j <= end; j++) {
+                dp[j] = Math.min(dp[j], dp[i] + 1);
+            }
+        }
+        return dp[n - 1];
     }
 }
